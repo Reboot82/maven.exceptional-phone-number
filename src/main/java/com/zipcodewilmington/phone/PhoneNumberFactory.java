@@ -24,7 +24,7 @@ public final class PhoneNumberFactory {
      * @param phoneNumberCount - number of PhoneNumber objects to instantiate
      * @return array of randomly generated PhoneNumber objects
      */ //TODO - Implement logic
-    public static PhoneNumber[] createRandomPhoneNumberArray(int phoneNumberCount) throws InvalidPhoneNumberFormatException {
+    public static PhoneNumber[] createRandomPhoneNumberArray(int phoneNumberCount) {
         PhoneNumber[] phoneNumbers = new PhoneNumber[phoneNumberCount];
         for (int i = 0; i < phoneNumberCount; i++) {
             PhoneNumber phoneNumber = createRandomPhoneNumber();
@@ -36,7 +36,7 @@ public final class PhoneNumberFactory {
     /**
      * @return an instance of PhoneNumber with randomly generated phone number value
      */ //TODO - Implement logic
-    public static PhoneNumber createRandomPhoneNumber() throws InvalidPhoneNumberFormatException {
+    public static PhoneNumber createRandomPhoneNumber(){
 
         return createPhoneNumberSafely(RandomNumberFactory.createInteger(100,999), RandomNumberFactory.createInteger(100,999), RandomNumberFactory.createInteger(1000,9999));
     }
@@ -48,14 +48,18 @@ public final class PhoneNumberFactory {
      * @param phoneLineCode     - 4 digit code
      * @return a new phone number object
      */ //TODO - if input is valid, return respective PhoneNumber object, else return null
-    public static PhoneNumber createPhoneNumberSafely(int areaCode, int centralOfficeCode, int phoneLineCode) throws InvalidPhoneNumberFormatException {
-        if(checkNumberSize(areaCode, 3) && checkNumberSize(centralOfficeCode, 3) && checkNumberSize(phoneLineCode, 4)){
-            return createPhoneNumber("(" + areaCode + ")-" + centralOfficeCode + "-" + phoneLineCode);
-        }
-        else {
+    public static PhoneNumber createPhoneNumberSafely(int areaCode, int centralOfficeCode, int phoneLineCode) {
+        try {
+            if(checkNumberSize(areaCode, 3) && checkNumberSize(centralOfficeCode, 3) && checkNumberSize(phoneLineCode, 4)) {
+                return createPhoneNumber("(" + areaCode + ")-" + centralOfficeCode + "-" + phoneLineCode);
+            }
+        } catch (InvalidPhoneNumberFormatException e) {
+            e.printStackTrace();
             System.out.println("(" + areaCode + ")-" + centralOfficeCode + "-" + phoneLineCode + " is not a valid phone number");
             return null;
         }
+        return null;
+
     }
 
     public static boolean checkNumberSize(int number, int expectedLength){

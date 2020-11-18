@@ -21,7 +21,7 @@ public class PhoneNumberFactoryTest {
     }
 
     @Test
-    public void testCreatePhoneNumberSafely() throws InvalidPhoneNumberFormatException {
+    public void testCreatePhoneNumberSafely() {
         // : Given
         int areaCode = 0;
         int centralOfficeCode = 0;
@@ -35,7 +35,7 @@ public class PhoneNumberFactoryTest {
     }
 
     @Test
-    public void testGetAreaCode() throws InvalidPhoneNumberFormatException {
+    public void testGetAreaCode() {
         // : Given
         Integer areaCode = 302;
         int centralOfficeCode = 312;
@@ -49,7 +49,7 @@ public class PhoneNumberFactoryTest {
     }
 
     @Test
-    public void testGetCentralOfficeCode() throws InvalidPhoneNumberFormatException {
+    public void testGetCentralOfficeCode() {
         // : Given
         int areaCode = 302;
         Integer centralOfficeCode = 312;
@@ -64,7 +64,7 @@ public class PhoneNumberFactoryTest {
 
 
     @Test
-    public void testPhoneLineCode() throws InvalidPhoneNumberFormatException {
+    public void testPhoneLineCode() {
         // : Given
         int areaCode = 302;
         int centralOfficeCode = 312;
@@ -78,7 +78,7 @@ public class PhoneNumberFactoryTest {
     }
 
     @Test
-    public void testCreateRandomPhoneNumber() throws InvalidPhoneNumberFormatException {
+    public void testCreateRandomPhoneNumber() {
         for (int i = 0; i < 999; i++) {
             // : Given
             // : When
